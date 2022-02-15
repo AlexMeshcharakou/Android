@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -13,15 +15,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView namesList = findViewById(R.id.rv_names);
+        ArrayList<String> ourNames = new ArrayList<>();
+        ourNames.add("Vasya");
+        ourNames.add("Lesha");
+        ourNames.add("Julia");
+
+        RecyclerView recyclerView = findViewById(R.id.rv_names);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        namesList.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(layoutManager);
 
-        namesList.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true);
 
-        NamesAdapter namesAdapter = new NamesAdapter(100);
-        namesList.setAdapter(namesAdapter);
-
+        NamesAdapter namesAdapter = new NamesAdapter(ourNames);
+        recyclerView.setAdapter(namesAdapter);
     }
 }
